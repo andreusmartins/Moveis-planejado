@@ -1,12 +1,11 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // =============================================
     // EFEITO DE SCROLL NA NAVBAR
     // =============================================
     const navbar = document.querySelector('.navbar');
-    
-    // Adiciona ou remove a classe 'scrolled' dependendo da posição do scroll
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 10) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
@@ -14,28 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // =============================================
-    // SCROLL SUAVE PARA LINKS ANCORA
+    // SCROLL SUAVE PARA LINKS ÂNCORA
     // =============================================
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
+
             const targetId = this.getAttribute('href');
             if (targetId === '#') return;
-            
+
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                // Calcula a posição considerando a altura da navbar
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const navbarHeight = navbar.offsetHeight;
                 const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                
-                // Animação de scroll suave
+
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-                
-                // Fecha o menu mobile se estiver aberto
+
                 const navbarToggler = document.querySelector('.navbar-toggler');
                 const navbarCollapse = document.querySelector('.navbar-collapse');
                 if (navbarCollapse.classList.contains('show')) {
@@ -53,18 +49,16 @@ document.addEventListener('DOMContentLoaded', function() {
     backToTopButton.className = 'back-to-top';
     backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
     document.body.appendChild(backToTopButton);
-    
-    // Mostra ou esconde o botão conforme a posição do scroll
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         if (window.scrollY > 300) {
             backToTopButton.classList.add('active');
         } else {
             backToTopButton.classList.remove('active');
         }
     });
-    
-    // Animação de scroll ao topo ao clicar no botão
-    backToTopButton.addEventListener('click', function(e) {
+
+    backToTopButton.addEventListener('click', function (e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
@@ -73,62 +67,120 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // =============================================
-    // FORMULÁRIO DE CONTATO - FORMSUBMIT
+    // FORMULÁRIO DE CONTATO COM VALIDAÇÃO E ALERTA
     // =============================================
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Adiciona feedback visual durante o envio
+        contactForm.addEventListener('submit', function (e) {
+            e.preventDefault(); // impede envio tradicional
+
+            // Validação básica via checkValidity
+            if (!contactForm.checkValidity()) {
+                contactForm.classList.add('was-validated'); // para estilos do bootstrap
+                return;
+            }
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
+
+            // Desabilitar botão e mostrar spinner
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
             submitBtn.disabled = true;
-            
-            // Simula um atraso para demonstração (pode remover em produção)
+
+            // Simula envio async (ex: fetch)
             setTimeout(() => {
+                // Resetar botão e formulário
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
+                contactForm.reset();
+                contactForm.classList.remove('was-validated');
+
+                // Criar alerta bootstrap de sucesso
+                const successAlert = document.createElement('div');
+                successAlert.className = 'alert alert-success alert-dismissible fade show mt-3';
+                successAlert.role = 'alert';
+                successAlert.innerHTML = `
+                    Formulário enviado com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+
+                // Adicionar alerta antes do formulário
+                contactForm.parentNode.insertBefore(successAlert, contactForm);
+
+                // Opcional: remover alerta após 5 segundos
+                setTimeout(() => {
+                    bootstrap.Alert.getOrCreateInstance(successAlert).close();
+                }, 5000);
+
+                // Aqui você pode colocar a lógica real de envio (fetch)
+                console.log('Formulário enviado:', {
+                    nome: this.nome.value,
+                    email: this.email.value,
+                    mensagem: this.mensagem.value
+                });
             }, 2000);
-            
-            // O FormSubmit.co cuidará do envio real do formulário
-            console.log('Formulário de contato enviado:', {
-                nome: this.nome.value,
-                email: this.email.value,
-                assunto: this.assunto.value,
-                mensagem: this.mensagem.value
-            });
         });
     }
 
     // =============================================
-    // FORMULÁRIO DE ORÇAMENTO - FORMSUBMIT
+    // FORMULÁRIO DE ORÇAMENTO
     // =============================================
     const budgetForm = document.getElementById('budgetForm');
     if (budgetForm) {
-        budgetForm.addEventListener('submit', function(e) {
-            // Adiciona feedback visual durante o envio
+        budgetForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Validação básica para orçamento (pode ser igual)
+            if (!budgetForm.checkValidity()) {
+                budgetForm.classList.add('was-validated');
+                return;
+            }
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
             submitBtn.disabled = true;
-            
-            // Simula um atraso para demonstração (pode remover em produção)
+
             setTimeout(() => {
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
-                
-                // Fecha o modal após o envio (o redirecionamento será feito pelo FormSubmit)
+                budgetForm.reset();
+                budgetForm.classList.remove('was-validated');
+
                 const modal = bootstrap.Modal.getInstance(document.getElementById('budgetModal'));
-                modal.hide();
+                if (modal) modal.hide();
+
+                // Criar alerta bootstrap de sucesso na página (opcional)
+                const successAlert = document.createElement('div');
+                successAlert.className = 'alert alert-success alert-dismissible fade show mt-3';
+                successAlert.role = 'alert';
+                successAlert.innerHTML = `
+                    Orçamento enviado com sucesso!
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                `;
+                budgetForm.parentNode.insertBefore(successAlert, budgetForm);
+
+                setTimeout(() => {
+                    bootstrap.Alert.getOrCreateInstance(successAlert).close();
+                }, 5000);
+
+                console.log('Formulário de orçamento enviado:', {
+                    nome: this.nome.value,
+                    email: this.email.value,
+                    telefone: this.telefone.value,
+                    projeto: this.projeto.value
+                });
             }, 2000);
-            
-            // O FormSubmit.co cuidará do envio real do formulário
-            console.log('Formulário de orçamento enviado:', {
-                nome: this.nome.value,
-                email: this.email.value,
-                telefone: this.telefone.value,
-                projeto: this.projeto.value
-            });
+        });
+    }
+
+    // =============================================
+    // BOTÃO DO WHATSAPP (do primeiro código)
+    // =============================================
+    const whatsappBtn = document.querySelector('.whatsapp-float');
+    if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', function () {
+            console.log('WhatsApp clicado - pode adicionar tracking aqui');
         });
     }
 
@@ -140,33 +192,3 @@ document.addEventListener('DOMContentLoaded', function() {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
 });
-
-
-    // =============================================
-//     Observações Importantes:
-// Substituições necessárias:
-
-// Substitua teste@teste.com.br pelo seu e-mail real nos formulários
-
-// Atualize https://seusite.com pelo seu domínio real nos campos _next
-
-// Páginas de redirecionamento:
-
-// Crie as páginas obrigado.html e orcamento-enviado.html conforme mostrado anteriormente
-
-// Personalização:
-
-// Você pode adicionar mais campos aos formulários conforme necessário
-
-// Para estilizar os spinners de carregamento, adicione ao seu CSS:
-
-// css
-// .fa-spinner {
-//     animation: fa-spin 1s infinite linear;
-// }
-// @keyframes fa-spin {
-//     0% { transform: rotate(0deg); }
-//     100% { transform: rotate(359deg); }
-// }
-// Esta implementação mantém toda a funcionalidade original do seu site, mas agora com um sistema de envio de formulários totalmente funcional usando FormSubmit.co, com feedback visual para o usuário durante o envio.
-    // =============================================
