@@ -1,9 +1,11 @@
 /* Global Styles */
 :root {
-    --primary: #0d6efd;
+    --primary: #d75d0b;
     --secondary: #6c757d;
-    --dark: #212529;
+    --dark:  #d75d0b;
     --light: #f8f9fa;
+    --differential-bg: #e67e22;
+    --differential-icon-bg: rgba(230, 125, 34, 0.774);
 }
 
 body {
@@ -40,18 +42,26 @@ body {
     background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.2) 100%);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
+/* Estilo para a palavra "Casa" */
+.cursive-casa {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.1em;
+    font-weight: 700;
+    display: inline-block;
+    transform: rotate(-5deg);
+    padding: 0 5px;
 }
 
+/* Ajuste para o título completo */
 .hero-title {
     font-family: 'Playfair Display', serif;
+    font-size: 10rem;
     color: #fff;
     text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     line-height: 1.1;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
+    font-variant-ligatures: discretionary-ligatures;
 }
 
 .hero-title span {
@@ -60,6 +70,7 @@ body {
 
 .hero-title span:first-child {
     font-weight: 300;
+    font-style: italic;
 }
 
 .hero-title span:last-child {
@@ -100,8 +111,14 @@ body {
     opacity: 0;
 }
 
-.btn-primary.btn-rounded {
-    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+.btn-dark {
+    background-color: var(--dark);
+    border-color: var(--dark);
+}
+
+.btn-dark:hover {
+    background-color: #23272b;
+    border-color: #1d2124;
 }
 
 .btn-outline-light.btn-rounded:hover {
@@ -194,6 +211,34 @@ section {
     box-shadow: none;
 }
 
+/* Diferenciais Section */
+.differential-section {
+    background-color: var(--differential-bg);
+    color: white;
+}
+
+.differential-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.differential-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.differential-icon {
+    background-color: var(--differential-icon-bg);
+    color: white;
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Social Icons */
 .social-icons a {
     display: inline-flex;
@@ -214,7 +259,7 @@ section {
 /* Form Styles */
 .form-control:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    box-shadow: 0 0 0 0.25rem rgba(215, 93, 11, 0.25);
 }
 
 .btn-primary {
@@ -223,14 +268,14 @@ section {
 }
 
 .btn-primary:hover {
-    background-color: #0b5ed7;
-    border-color: #0a58ca;
+    background-color: #b84e09;
+    border-color: #a34608;
 }
 
 /* Responsividade */
 @media (max-width: 1199.98px) {
     .hero-title {
-        font-size: 3rem;
+        font-size: 4rem;
     }
 }
 
@@ -240,7 +285,7 @@ section {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 5.5rem;
         margin-left: auto;
         margin-right: auto;
     }
@@ -283,7 +328,7 @@ section {
     }
     
     .hero-title {
-        font-size: 2.2rem;
+        font-size: 5rem;
     }
     
     .hero-subtitle {
@@ -305,11 +350,22 @@ section {
     #contact .card {
         margin-top: 20px;
     }
+
+    /* Reordenar cards em mobile */
+    #solutions .order-1 {
+        order: 1 !important;
+    }
+    #solutions .order-2 {
+        order: 2 !important;
+    }
+    #solutions .order-3 {
+        order: 3 !important;
+    }
 }
 
 @media (max-width: 575.98px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 5.0rem;
     }
     
     section {
@@ -330,36 +386,7 @@ section {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(359deg); }
 }
-/*Topo
-/* .back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 45px;
-    background-color: #0d6efd;
-    color: #fff;
-    font-size: 20px;
-    border-radius: 50%;
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 999;
-}
 
-.back-to-top.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.back-to-top:hover {
-    background-color: #084298;
-} */
 .back-to-top {
     display: none !important;
 }

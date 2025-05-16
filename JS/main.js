@@ -4,13 +4,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // =============================================
     const navbar = document.querySelector('.navbar');
 
-    window.addEventListener('scroll', function () {
+    function handleScroll() {
         if (window.scrollY > 10) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+    }
+
+    // Debounce para melhor performance
+    function debounce(func, wait) {
+        let timeout;
+        return function() {
+            const context = this, args = arguments;
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(context, args), wait);
+        };
+    }
+
+    window.addEventListener('scroll', debounce(handleScroll, 10));
 
     // =============================================
     // SCROLL SUAVE PARA LINKS ÂNCORA
@@ -32,9 +44,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     behavior: 'smooth'
                 });
 
-                const navbarToggler = document.querySelector('.navbar-toggler');
-                const navbarCollapse = document.querySelector('.navbar-collapse');
-                if (navbarCollapse.classList.contains('show')) {
+                // Fechar navbar mobile se estiver aberta
+                const navbarCollapse = document.querySelector('.navbar-collapse.show');
+                if (navbarCollapse) {
+                    const navbarToggler = document.querySelector('.navbar-toggler');
                     navbarToggler.click();
                 }
             }
@@ -67,121 +80,71 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // =============================================
-    // FORMULÁRIO DE CONTATO COM VALIDAÇÃO E ALERTA
+    // FUNÇÃO GENÉRICA PARA ENVIO DE FORMULÁRIOS
     // =============================================
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault(); // impede envio tradicional
+    function handleFormSubmit(form, successMessage, modal = null) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-            // Validação básica via checkValidity
-            if (!contactForm.checkValidity()) {
-                contactForm.classList.add('was-validated'); // para estilos do bootstrap
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
                 return;
             }
 
-            const submitBtn = this.querySelector('button[type="submit"]');
+            const submitBtn = form.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
-
-            // Desabilitar botão e mostrar spinner
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
             submitBtn.disabled = true;
 
-            // Simula envio async (ex: fetch)
+            // Simulação de envio (substituir por fetch real)
             setTimeout(() => {
-                // Resetar botão e formulário
                 submitBtn.innerHTML = originalBtnText;
                 submitBtn.disabled = false;
-                contactForm.reset();
-                contactForm.classList.remove('was-validated');
+                form.reset();
+                form.classList.remove('was-validated');
 
-                // Criar alerta bootstrap de sucesso
-                const successAlert = document.createElement('div');
-                successAlert.className = 'alert alert-success alert-dismissible fade show mt-3';
-                successAlert.role = 'alert';
-                successAlert.innerHTML = `
-                    Formulário enviado com sucesso!
+                // Fechar modal se existir
+                if (modal) {
+                    const modalInstance = bootstrap.Modal.getInstance(modal);
+                    modalInstance.hide();
+                }
+
+                // Mostrar alerta de sucesso
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
+                alertDiv.innerHTML = `
+                    ${successMessage}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 `;
+                
+                const container = form.closest('.container, .modal-body') || document.body;
+                container.insertBefore(alertDiv, form);
 
-                // Adicionar alerta antes do formulário
-                contactForm.parentNode.insertBefore(successAlert, contactForm);
-
-                // Opcional: remover alerta após 5 segundos
+                // Remover alerta após 5 segundos
                 setTimeout(() => {
-                    bootstrap.Alert.getOrCreateInstance(successAlert).close();
+                    bootstrap.Alert.getOrCreateInstance(alertDiv).close();
                 }, 5000);
 
-                // Aqui você pode colocar a lógica real de envio (fetch)
-                console.log('Formulário enviado:', {
-                    nome: this.nome.value,
-                    email: this.email.value,
-                    mensagem: this.mensagem.value
-                });
-            }, 2000);
+                console.log('Formulário enviado:', Object.fromEntries(new FormData(form)));
+            }, 1500);
         });
+    }
+
+    // =============================================
+    // FORMULÁRIO DE CONTATO
+    // =============================================
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        handleFormSubmit(contactForm, 'Mensagem enviada com sucesso!');
     }
 
     // =============================================
     // FORMULÁRIO DE ORÇAMENTO
     // =============================================
     const budgetForm = document.getElementById('budgetForm');
+    const budgetModal = document.getElementById('budgetModal');
     if (budgetForm) {
-        budgetForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Validação básica para orçamento (pode ser igual)
-            if (!budgetForm.checkValidity()) {
-                budgetForm.classList.add('was-validated');
-                return;
-            }
-
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-            submitBtn.disabled = true;
-
-            setTimeout(() => {
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-                budgetForm.reset();
-                budgetForm.classList.remove('was-validated');
-
-                const modal = bootstrap.Modal.getInstance(document.getElementById('budgetModal'));
-                if (modal) modal.hide();
-
-                // Criar alerta bootstrap de sucesso na página (opcional)
-                const successAlert = document.createElement('div');
-                successAlert.className = 'alert alert-success alert-dismissible fade show mt-3';
-                successAlert.role = 'alert';
-                successAlert.innerHTML = `
-                    Orçamento enviado com sucesso!
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                `;
-                budgetForm.parentNode.insertBefore(successAlert, budgetForm);
-
-                setTimeout(() => {
-                    bootstrap.Alert.getOrCreateInstance(successAlert).close();
-                }, 5000);
-
-                console.log('Formulário de orçamento enviado:', {
-                    nome: this.nome.value,
-                    email: this.email.value,
-                    telefone: this.telefone.value,
-                    projeto: this.projeto.value
-                });
-            }, 2000);
-        });
-    }
-
-    // =============================================
-    // BOTÃO DO WHATSAPP (do primeiro código)
-    // =============================================
-    const whatsappBtn = document.querySelector('.whatsapp-float');
-    if (whatsappBtn) {
-        whatsappBtn.addEventListener('click', function () {
-            console.log('WhatsApp clicado - pode adicionar tracking aqui');
-        });
+        handleFormSubmit(budgetForm, 'Orçamento solicitado com sucesso!', budgetModal);
     }
 
     // =============================================
@@ -191,4 +154,13 @@ document.addEventListener('DOMContentLoaded', function () {
     tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl);
     });
+
+    // =============================================
+    // FOCO NO MODAL QUANDO ABERTO
+    // =============================================
+    if (budgetModal) {
+        budgetModal.addEventListener('shown.bs.modal', () => {
+            budgetModal.querySelector('input').focus();
+        });
+    }
 });

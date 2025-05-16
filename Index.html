@@ -12,7 +12,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,400&display=swap"
         rel="stylesheet">
     <!-- CSS Custom -->
     <link rel="stylesheet" href="css/style.css">
@@ -46,13 +48,8 @@
                         <a class="nav-link" href="#contact">Contato</a>
                     </li>
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#budgetModal">
+                        <a class="btn btn-dark" href="#" data-bs-toggle="modal" data-bs-target="#budgetModal">
                             <i class="fas fa-calculator me-2"></i>Pedir Orçamento
-                        </a>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-outline-dark" href="login.html">
-                            <i class="fas fa-lock me-2"></i>Área Restrita
                         </a>
                     </li>
                 </ul>
@@ -63,16 +60,18 @@
     <!-- Hero Section -->
     <section id="home" class="hero-section">
         <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-lg-6 mx-auto text-center text-lg-start">
+            <div class="row h-100 align-items-center justify-content-center">
+                <div class="col-lg-8 text-center">
                     <h1 class="hero-title">
-                        <span class="d-block">Casa</span>
+                        <span class="d-block cursive-casa">Casa</span>
                         <span class="d-block">Decorada</span>
                     </h1>
-                    <p class="hero-subtitle">Soluções personalizadas em móveis, mármores, granitos e vidros para
-                        ambientes residenciais e comerciais.</p>
-                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#solutions" class="btn btn-primary btn-rounded">
+                    <p class="hero-subtitle mx-auto" style="max-width: 600px;">
+                        Soluções personalizadas em móveis, mármores, granitos e vidros para
+                        ambientes residenciais e comerciais.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center">
+                        <a href="#solutions" class="btn btn-dark btn-rounded">
                             <i class="fas fa-box-open me-2"></i>Nossos Serviços
                         </a>
                         <a href="#" class="btn btn-outline-light btn-rounded" data-bs-toggle="modal"
@@ -101,7 +100,7 @@
                     <p>Contamos com uma equipe de profissionais qualificados e comprometidos com a satisfação total de
                         nossos clientes, desde o projeto até a instalação final.</p>
                     <div class="mt-4">
-                        <a href="#differentials" class="btn btn-outline-primary">Nossos Diferenciais</a>
+                        <a href="#differentials" class="btn btn-outline-dark">Nossos Diferenciais</a>
                     </div>
                 </div>
             </div>
@@ -115,8 +114,22 @@
                 <h2 class="fw-bold">Nossas Soluções</h2>
                 <p class="lead text-muted">Conheça nossos principais serviços e produtos</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
+            <div class="row g-4 justify-content-center">
+                <!-- Mármores e Granitos (Esquerda) -->
+                <div class="col-md-6 col-lg-4 order-1">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <img src="images/marmores.jpg" class="card-img-top" alt="Mármores">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Mármores e Granitos</h5>
+                            <p class="card-text">Trabalhos em mármore para bancadas, pisos, revestimentos e escadas.</p>
+                            <p class="card-text">Bancadas, pias, soleiras e outros trabalhos em granito nacional e
+                                importado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Móveis Planejados (Meio) -->
+                <div class="col-md-6 col-lg-4 order-3 order-lg-2">
                     <div class="card h-100 border-0 shadow-sm">
                         <img src="images/moveis-planejados.jpg" class="card-img-top" alt="Móveis Planejados">
                         <div class="card-body text-center">
@@ -126,26 +139,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="images/marmores.jpg" class="card-img-top" alt="Mármores">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Mármores</h5>
-                            <p class="card-text">Trabalhos em mármore para bancadas, pisos, revestimentos e escadas.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm">
-                        <img src="images/granitos.jpg" class="card-img-top" alt="Granitos">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Granitos</h5>
-                            <p class="card-text">Bancadas, pias, soleiras e outros trabalhos em granito nacional e
-                                importado.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
+
+                <!-- Vidraçaria (Direita) -->
+                <div class="col-md-6 col-lg-4 order-2 order-lg-3">
                     <div class="card h-100 border-0 shadow-sm">
                         <img src="images/vidracaria.jpg" class="card-img-top" alt="Vidraçaria">
                         <div class="card-body text-center">
@@ -160,17 +156,16 @@
     </section>
 
     <!-- Diferenciais -->
-    <section id="differentials" class="py-5 bg-dark text-white">
+    <section id="differentials" class="py-5 differential-section">
         <div class="container py-5">
             <div class="text-center mb-5">
                 <h2 class="fw-bold">Nossos Diferenciais</h2>
-                <p class="lead text-muted">O que nos torna a melhor escolha para seu projeto</p>
+                <p class="lead">O que nos torna a melhor escolha para seu projeto</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="text-center p-4">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3"
-                            style="width: 70px; height: 70px; margin: 0 auto;">
+                    <div class="text-center p-4 differential-card">
+                        <div class="differential-icon rounded-circle p-3 mb-3">
                             <i class="fas fa-medal fa-2x"></i>
                         </div>
                         <h5>Qualidade Garantida</h5>
@@ -179,9 +174,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="text-center p-4">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3"
-                            style="width: 70px; height: 70px; margin: 0 auto;">
+                    <div class="text-center p-4 differential-card">
+                        <div class="differential-icon rounded-circle p-3 mb-3">
                             <i class="fas fa-truck fa-2x"></i>
                         </div>
                         <h5>Entrega Rápida</h5>
@@ -189,9 +183,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="text-center p-4">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3"
-                            style="width: 70px; height: 70px; margin: 0 auto;">
+                    <div class="text-center p-4 differential-card">
+                        <div class="differential-icon rounded-circle p-3 mb-3">
                             <i class="fas fa-headset fa-2x"></i>
                         </div>
                         <h5>Suporte Personalizado</h5>
@@ -199,9 +192,8 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <div class="text-center p-4">
-                        <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3"
-                            style="width: 70px; height: 70px; margin: 0 auto;">
+                    <div class="text-center p-4 differential-card">
+                        <div class="differential-icon rounded-circle p-3 mb-3">
                             <i class="fas fa-ruler-combined fa-2x"></i>
                         </div>
                         <h5>Projeto Sob Medida</h5>
@@ -212,96 +204,101 @@
         </div>
     </section>
 
-    <!-- Contato -->
+    <!-- Contato Centralizado -->
     <section id="contact" class="py-5">
         <div class="container py-5">
-
-            <!-- Bloco de Informações de Contato Centralizado -->
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-6 text-center">
-                    <h2 class="fw-bold mb-4">Entre em Contato</h2>
-                    <p class="lead">Estamos prontos para transformar seu projeto em realidade.</p>
-
-                    <div class="d-flex align-items-start justify-content-center mb-4">
-                        <div class="me-3 text-primary">
-                            <i class="fas fa-map-marker-alt fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5>Endereço</h5>
-                            <p class="mb-0">Rua Nova da Palha, 30 - Burissatuba - Camaçari BA<br>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-start justify-content-center mb-4">
-                        <div class="me-3 text-primary">
-                            <i class="fas fa-phone-alt fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5>Telefone</h5>
-                            <p class="mb-0">(00) 1234-5678<br>(00) 98765-4321 (WhatsApp)</p>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-start justify-content-center mb-4">
-                        <div class="me-3 text-primary">
-                            <i class="fas fa-envelope fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5>E-mail</h5>
-                            <p class="mb-0">contato@casedecorada.com.br</p>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-start justify-content-center mb-4">
-                        <div class="me-3 text-primary">
-                            <i class="fas fa-clock fa-2x"></i>
-                        </div>
-                        <div>
-                            <h5>Horário de Atendimento</h5>
-                            <p class="mb-0">Segunda a Sexta: 08h às 18h<br>Sábado: 08h às 12h</p>
-                        </div>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center mb-5">
+                    <h2 class="fw-bold">Entre em Contato</h2>
+                    <p class="lead mx-auto" style="max-width: 700px;">Estamos prontos para transformar seu projeto em
+                        realidade. Entre em contato conosco através dos canais abaixo ou preencha o formulário.</p>
                 </div>
             </div>
 
-            <!-- Formulário -->
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="card border-0 shadow">
-                        <div class="card-body p-4">
-                            <h3 class="card-title mb-4 text-center">Envie sua Mensagem</h3>
-                            <form action="https://formsubmit.co/seu-email@dominio.com" method="POST">
-                                <div class="mb-3">
-                                    <label for="nome" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nome" required>
+                    <div class="row g-4">
+                        <!-- Informações de Contato -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body p-4 text-center">
+                                    <h3 class="card-title mb-4">Nossos Contatos</h3>
+
+                                    <div class="contact-info mb-4">
+                                        <div class="icon-circle mb-3">
+                                            <i class="fas fa-map-marker-alt fa-2x"></i>
+                                        </div>
+                                        <h5>Endereço</h5>
+                                        <p>Rua Nova da Palha, 30<br>Burissatuba - Camaçari BA</p>
+                                    </div>
+
+                                    <div class="contact-info mb-4">
+                                        <div class="icon-circle mb-3">
+                                            <i class="fas fa-phone-alt fa-2x"></i>
+                                        </div>
+                                        <h5>Telefone</h5>
+                                        <p>+55 (71) 98627-0217</p>
+                                    </div>
+
+                                    <div class="contact-info mb-4">
+                                        <div class="icon-circle mb-3">
+                                            <i class="fas fa-envelope fa-2x"></i>
+                                        </div>
+                                        <h5>E-mail</h5>
+                                        <p>casadecorada@casadecorada.com.br</p>
+                                    </div>
+
+                                    <div class="contact-info">
+                                        <div class="icon-circle mb-3">
+                                            <i class="fas fa-clock fa-2x"></i>
+                                        </div>
+                                        <h5>Horário de Atendimento</h5>
+                                        <p>Segunda a Sexta: 08h às 18h<br>Sábado: 08h às 12h</p>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">E-mail</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
+                        <!-- Formulário de Contato -->
+                        <div class="col-md-6">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h3 class="card-title mb-4 text-center">Envie sua Mensagem</h3>
+                                    <form id="contactForm" action="https://formsubmit.co/seu-email@dominio.com"
+                                        method="POST">
+                                        <div class="mb-3">
+                                            <label for="nome" class="form-label">Nome</label>
+                                            <input type="text" class="form-control" id="nome" name="nome" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">E-mail</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="telefone" class="form-label">Telefone</label>
+                                            <input type="tel" class="form-control" id="telefone" name="telefone">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="mensagem" class="form-label">Mensagem</label>
+                                            <textarea class="form-control" id="mensagem" name="mensagem" rows="4"
+                                                required></textarea>
+                                        </div>
+                                        <input type="hidden" name="_captcha" value="false">
+                                        <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+                                        <div class="d-grid">
+                                            <button type="submit" class="btn btn-dark">
+                                                <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
-
-                                <div class="mb-3">
-                                    <label for="mensagem" class="form-label">Mensagem</label>
-                                    <textarea class="form-control" id="mensagem" name="mensagem" rows="4"
-                                        required></textarea>
-                                </div>
-
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
-
-                                <button type="submit" class="btn btn-primary w-100">
-                                    <i class="fas fa-paper-plane me-2"></i>Enviar Mensagem
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </section>
-
 
     <!-- Modal Orçamento -->
     <div class="modal fade" id="budgetModal" tabindex="-1" aria-labelledby="budgetModalLabel" aria-hidden="true">
@@ -312,11 +309,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="budgetForm" action="https://formsubmit.co/seu-email@dominio.com" method="POST">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://seusite.com/orcamento-enviado.html">
-                        <input type="hidden" name="_subject" value="Novo pedido de orçamento - Casa Decorada">
-
+                    <form id="budgetForm">
                         <div class="mb-3">
                             <label for="budgetName" class="form-label">Nome</label>
                             <input type="text" class="form-control" id="budgetName" name="nome" required>
@@ -335,7 +328,7 @@
                                 required></textarea>
                         </div>
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-dark">
                                 <i class="fas fa-paper-plane me-2"></i>Enviar Solicitação
                             </button>
                         </div>
@@ -361,7 +354,12 @@
                     <p>Especializada em móveis planejados, mármores, granitos e vidraçaria, transformando sonhos em
                         realidade desde 2008.</p>
                     <div class="social-icons">
-                        <a href="https://www.instagram.com/casadecoradaoficial" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/casadecoradaoficial" class="text-white me-3"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+5571986270217" class="text-white me-3"><i
+                                class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:casadecorada@casadecorada.com.br" class="text-white me-3"><i
+                                class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 text-center text-lg-start">
@@ -389,9 +387,10 @@
                 <div class="col-lg-3 col-md-4 text-center text-lg-start">
                     <h5 class="mb-4">Contato</h5>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Rua Nova da Palha, 30 - Burissatuba - Camaçari BA</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Rua Nova da Palha, 30 - Burissatuba -
+                            Camaçari BA</li>
                         <li class="mb-2"><i class="fas fa-phone-alt me-2"></i> +55 (71) 98627-0217</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>  casadecorada@casadecorada.com.br</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> casadecorada@casadecorada.com.br</li>
                     </ul>
                 </div>
             </div>
@@ -406,8 +405,13 @@
                 </div>
             </div>
         </div>
+        <!-- No footer (rodapé) -->
+        <div class="text-center mt-3">
+            <small>
+                <a href="login.html" class="text-muted text-decoration-none">Acesso Restrito</a>
+            </small>
+        </div>
     </footer>
-
     <!-- WhatsApp Float -->
     <a href="https://wa.me/+5571986270217" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
