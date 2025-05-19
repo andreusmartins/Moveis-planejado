@@ -280,7 +280,15 @@ section {
     background-color: #b84e09;
     border-color: #a34608;
 }
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
 
+/* Destaque para o novo serviço */
+.card-serralheria {
+    border: 2px solid var(--primary) !important;
+}
 /* Responsividade */
 @media (max-width: 1199.98px) {
     .hero-title {

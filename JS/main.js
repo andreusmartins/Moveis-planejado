@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Debounce para melhor performance
     function debounce(func, wait) {
         let timeout;
-        return function () {
+        return function() {
             const context = this, args = arguments;
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(context, args), wait);
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // FUNÇÃO GENÉRICA PARA ENVIO DE FORMULÁRIOS
     // =============================================
     function handleFormSubmit(form, successMessage, modal = null) {
-        form.addEventListener('submit', function (e) {
+        form.addEventListener('submit', function(e) {
             e.preventDefault();
 
             if (!form.checkValidity()) {
