@@ -2,7 +2,7 @@
 :root {
     --primary: #d75d0b;
     --secondary: #6c757d;
-    --dark:  #d75d0b;
+    --dark: #d75d0b;
     --light: #f8f9fa;
     --differential-bg: #e67e22;
     --differential-icon-bg: rgba(230, 125, 34, 0.774);
@@ -39,7 +39,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.2) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.2) 100%);
 }
 
 /* Estilo para a palavra "Casa" */
@@ -57,7 +57,7 @@ body {
     font-family: 'Playfair Display', serif;
     font-size: 10rem;
     color: #fff;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     line-height: 1.1;
     letter-spacing: 1px;
     margin-bottom: 1.5rem;
@@ -78,7 +78,7 @@ body {
 }
 
 .hero-subtitle {
-    color: rgba(255,255,255,0.9);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 1.25rem;
     margin-bottom: 2rem;
     max-width: 600px;
@@ -102,7 +102,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.1) 100%);
+    background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
     z-index: 0;
     transition: all 0.4s ease;
 }
@@ -122,7 +122,7 @@ body {
 }
 
 .btn-outline-light.btn-rounded:hover {
-    background-color: rgba(255,255,255,0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* WhatsApp Float */
@@ -152,9 +152,17 @@ body {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 .whatsapp-float {
@@ -197,7 +205,8 @@ section {
     transition: all 0.2s;
 }
 
-.navbar .nav-link:hover, .navbar .nav-link.active {
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
     color: var(--primary) !important;
     background: rgba(0, 0, 0, 0.03);
 }
@@ -283,22 +292,22 @@ section {
     .hero-section {
         text-align: center;
     }
-    
+
     .hero-title {
         font-size: 5.5rem;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .hero-subtitle {
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .btn-rounded {
         padding: 0.5rem 1.2rem;
     }
-    
+
     .navbar-collapse {
         padding: 20px 0;
         background: white;
@@ -306,11 +315,11 @@ section {
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         margin-top: 10px;
     }
-    
+
     .nav-item {
         margin: 5px 0;
     }
-    
+
     .btn {
         width: 100%;
         margin: 5px 0;
@@ -321,32 +330,32 @@ section {
     section {
         padding: 60px 0;
     }
-    
+
     .hero-section {
         min-height: 80vh;
         background-attachment: scroll;
     }
-    
+
     .hero-title {
         font-size: 5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1rem;
         max-width: 90%;
     }
-    
+
     .btn-rounded {
         width: 100%;
         max-width: 250px;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     #about .col-lg-6 {
         text-align: center;
     }
-    
+
     #contact .card {
         margin-top: 20px;
     }
@@ -355,9 +364,11 @@ section {
     #solutions .order-1 {
         order: 1 !important;
     }
+
     #solutions .order-2 {
         order: 2 !important;
     }
+
     #solutions .order-3 {
         order: 3 !important;
     }
@@ -367,12 +378,13 @@ section {
     .hero-title {
         font-size: 5.0rem;
     }
-    
+
     section {
         padding: 50px 0;
     }
-    
-    .card-text, .lead {
+
+    .card-text,
+    .lead {
         font-size: 0.95rem;
     }
 }
@@ -383,8 +395,13 @@ section {
 }
 
 @keyframes fa-spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(359deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(359deg);
+    }
 }
 
 .back-to-top {
