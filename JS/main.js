@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Debounce para melhor performance
     function debounce(func, wait) {
         let timeout;
-        return function() {
+        return function () {
             const context = this, args = arguments;
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(context, args), wait);
@@ -80,74 +80,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // =============================================
-    // FUNÇÃO GENÉRICA PARA ENVIO DE FORMULÁRIOS
-    // =============================================
-    function handleFormSubmit(form, successMessage, modal = null) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            if (!form.checkValidity()) {
-                form.classList.add('was-validated');
-                return;
-            }
-
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-            submitBtn.disabled = true;
-
-            // Simulação de envio (substituir por fetch real)
-            setTimeout(() => {
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-                form.reset();
-                form.classList.remove('was-validated');
-
-                // Fechar modal se existir
-                if (modal) {
-                    const modalInstance = bootstrap.Modal.getInstance(modal);
-                    modalInstance.hide();
-                }
-
-                // Mostrar alerta de sucesso
-                const alertDiv = document.createElement('div');
-                alertDiv.className = 'alert alert-success alert-dismissible fade show mt-3';
-                alertDiv.innerHTML = `
-                    ${successMessage}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                `;
-
-                const container = form.closest('.container, .modal-body') || document.body;
-                container.insertBefore(alertDiv, form);
-
-                // Remover alerta após 5 segundos
-                setTimeout(() => {
-                    bootstrap.Alert.getOrCreateInstance(alertDiv).close();
-                }, 5000);
-
-                console.log('Formulário enviado:', Object.fromEntries(new FormData(form)));
-            }, 1500);
-        });
-    }
-
-    // =============================================
-    // FORMULÁRIO DE CONTATO
-    // =============================================
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        handleFormSubmit(contactForm, 'Mensagem enviada com sucesso!');
-    }
-
-    // =============================================
-    // FORMULÁRIO DE ORÇAMENTO
-    // =============================================
-    const budgetForm = document.getElementById('budgetForm');
-    const budgetModal = document.getElementById('budgetModal');
-    if (budgetForm) {
-        handleFormSubmit(budgetForm, 'Orçamento solicitado com sucesso!', budgetModal);
-    }
-
-    // =============================================
     // INICIALIZAÇÃO DE TOOLTIPS
     // =============================================
     const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
@@ -158,9 +90,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // =============================================
     // FOCO NO MODAL QUANDO ABERTO
     // =============================================
+    const budgetModal = document.getElementById('budgetModal');
     if (budgetModal) {
         budgetModal.addEventListener('shown.bs.modal', () => {
-            budgetModal.querySelector('input').focus();
+            const firstInput = budgetModal.querySelector('input');
+            if (firstInput) firstInput.focus();
         });
     }
 });
