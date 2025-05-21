@@ -84,6 +84,14 @@ body {
     max-width: 600px;
 }
 
+.logo-title {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
 .btn-rounded {
     border-radius: 50px;
     overflow: hidden;
